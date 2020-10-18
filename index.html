@@ -101,7 +101,7 @@
 
         init()
     }
-
+    //编辑按钮
     function edit(index) {
         var editRes = JSON.parse(localStorage.getItem("email_data") || "[]")
         localStorage.setItem("editItem", JSON.stringify(editRes[index]))
