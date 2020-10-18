@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+
+<body>
+    <div class="top-part-wrapper">
+        <div class="top-part">
+        </div>
+    </div>
+    <div class="bottom_content">
+        <div class="right-content">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#/">通讯录</a></li>
+
+            </ol>
+            <button class="had-got">添加</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            姓名
+                        </th>
+                        <th>
+                            手机号
+                        </th>
+                        <th>
+                            价格
+                        </th>
+                        <th>
+                            邮箱
+                        </th>
+                        <th>
+                            地址
+                        </th>
+                        <th>
+                            QQ号
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+<script src="./data.js"></script>
+<script>
+    var addItem = document.querySelector(".had-got")
+    var tableContent = document.querySelector("tbody")
+    var res = [];
+
+
+    function init() {
+        var localData = localStorage.getItem("email_data")
+        if (localData) {
+            res = JSON.parse(localData)
+
+        } else {
+            res = JSON.parse(JSON.stringify(data))
+            localStorage.setItem("email_data", JSON.stringify(data))
+        }
+        var str = ""
+        res.forEach(function (item, index) {
+            str += "<tr><td>" + item.name + "</td><td>" + item.tel + "</td><td>" + item.email + "</td><td>" +
+                item.address + "</td><td>" + item.qq +
+                "</td><td><button class='not' onclick='del(" + index +
+                ")'>删除</button><button class='had_dliver' onclick='edit(" + index +
+                ")'>编辑</button></td></tr>"
+        })
+
+        tableContent.innerHTML = str
+    }
+
+    init()
+
+
+    addItem.onclick = function () {
+        //添加点击
+        localStorage.setItem("editItem", "")
+        location.href = "./details.html"
+    }
+
+
+    function del(index) {
+        //删除按钮
+        var delRes = JSON.parse(localStorage.getItem("email_data") || "[]")
+
+        delRes.splice(index, 1)
+
+
+
+        localStorage.setItem("email_data", JSON.stringify(delRes))
+
+        init()
+    }
+
+    function edit(index) {
+        var editRes = JSON.parse(localStorage.getItem("email_data") || "[]")
+        localStorage.setItem("editItem", JSON.stringify(editRes[index]))
+        location.href = "./details.html"
+    }
+</script>
+
+</html>
