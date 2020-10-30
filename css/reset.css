@@ -265,6 +265,8 @@ i {
 }
 
 .bottom_content {
+    margin-left: 13%;
+    margin-top: 150px;
     display: flex;
 }
 

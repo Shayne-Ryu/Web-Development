@@ -34,6 +34,10 @@ tbody tr:hover{
     margin-right: 8px;
     cursor: pointer;
 }
+.tongxunlu{
+    color: #21498c;
+    font-size:20px ;
+}
 
 .had-got{
     background: #19be6b;
